@@ -1,3 +1,4 @@
+import request
 from flask import Flask, jsonify
 import os
 
@@ -9,8 +10,8 @@ def index():
     return jsonify({"Choo Choo": "Welcome to your Flask app 🚅"})
 
 
-@app.route('/ip')
-def ip():
+@app.route('/get_ip', methods=["GET"]')
+def get_ip():
     return jsonify({'ip': request.remote_addr})
 
 
