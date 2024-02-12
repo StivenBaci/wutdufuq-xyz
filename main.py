@@ -12,7 +12,7 @@ def index():
 
 @app.route("/get_ip", methods=["GET"])
 def get_ip():
-    return jsonify({'ip': request.remote_addr}), 200
+    return request.remote_addr, 200
 
 
 if __name__ == '__main__':
