@@ -11,7 +11,7 @@ def index():
 
 @app.route('/ip')
 def ip():
-    return jsonify({'ip': request.remote_addr}), 200
+    return jsonify({'ip': request.remote_addr})
 
 
 if __name__ == '__main__':
