@@ -12,7 +12,10 @@ def index():
 
 @app.route("/get_ip", methods=["GET"])
 def get_ip():
-    return request.remote_addr, 200
+    if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
+        return request.environ['REMOTE_ADDR']
+    else:
+        return request.environ['HTTP_X_FORWARDED_FOR']
 
 
 if __name__ == '__main__':
