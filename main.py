@@ -9,5 +9,10 @@ def index():
     return jsonify({"Choo Choo": "Welcome to your Flask app 🚅"})
 
 
+@app.route('/ip')
+def return_ip():
+    return jsonify({'ip': request.remote_addr}), 200
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=os.getenv("PORT", default=5000))
