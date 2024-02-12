@@ -10,7 +10,7 @@ def index():
 
 
 @app.route('/ip')
-def return_ip():
+def ip():
     return jsonify({'ip': request.remote_addr}), 200
 
 
