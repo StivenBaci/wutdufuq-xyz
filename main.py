@@ -10,9 +10,9 @@ def index():
     return jsonify({"Choo Choo": "Welcome to your Flask app 🚅"})
 
 
-@app.route('/get_ip', methods=["GET"]')
+@app.route("/get_ip", methods=["GET"])
 def get_ip():
-    return jsonify({'ip': request.remote_addr})
+    return jsonify({'ip': request.remote_addr}), 200
 
 
 if __name__ == '__main__':
