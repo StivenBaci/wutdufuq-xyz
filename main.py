@@ -13,9 +13,9 @@ def index():
 @app.route("/get_ip", methods=["GET"])
 def get_ip():
     if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
-        return request.environ['REMOTE_ADDR']
+        return "<p> " + request.environ['REMOTE_ADDR'] + " </p>"
     else:
-        return request.environ['HTTP_X_FORWARDED_FOR']
+        return "<p> " + request.environ['HTTP_X_FORWARDED_FOR'] + " </p>"
 
 
 if __name__ == '__main__':
