@@ -17,6 +17,9 @@ def get_ip():
     else:
         return "<p> " + request.environ['HTTP_X_FORWARDED_FOR'] + " </p>"
 
+@app.route('/multistep')
+def multistep():
+    return flask.render_template('multistepform.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=os.getenv("PORT", default=5000))
