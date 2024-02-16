@@ -10,7 +10,7 @@ def index():
     return jsonify({"Choo Choo": "Welcome to your Flask app 🚅"})
 
 
-@app.route("/get_ip") #, methods=["GET"]
+@app.route("/get_ip", methods=["GET"])
 def get_ip():
     if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
         return "<p> " + request.environ['REMOTE_ADDR'] + " </p>"
