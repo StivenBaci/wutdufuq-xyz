@@ -368,19 +368,19 @@ function submitForm() {
     "custom_fields": {
                       "Ikkbbmember": Array.from(document.querySelectorAll('[required]'))
                                           .filter(radio => radio.checked)[0].value,
-                      "Info erhalten": (document.getElementById('informationen').checked ? 'true' : ''),
+                      "Interesse_vorhanden": (document.getElementById('informationen').checked ? 'true' : ''),
                       "Newsletter_Anmeldung": (document.getElementById('newsletter').checked ? 'true' : ''),
                       "Telefonnummer": formData['Telefonnummer'],
                       "Datenschutz": formData['datenschutz'],
-                      "Straße, Hausnummer": formData['Straße, Hausnummer*'],
-                      "Ort": formData['Ort*'],
-                      "Postleitzahl": formData['Postleitzahl*'],
                       "Geburtstermin": formData['Errechneter Geburtstermin']
                       },
     "standard_fields": {
                         "userEmail": formData["E-Mail-Adresse*"],
                         "FIRSTNAME": formData["Vorname*"],
                         "LASTNAME": formData["Nachname*"],
+                        "Straße": formData['Straße, Hausnummer*'],
+                        "Ort": formData['Ort*'],
+                        "PLZ": formData['Postleitzahl*'],
                         "Geschlecht": formData["Geschlecht*"]
                       } 
   };
