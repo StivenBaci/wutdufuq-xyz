@@ -394,7 +394,7 @@ function submitForm() {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(jsonData),
+    body: JSON.stringify(maileonData),
   })
     .then(response => response.json())
     .then(data => console.log(data))
