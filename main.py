@@ -1,5 +1,5 @@
 from flask import request
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 import os
 
 app = Flask(__name__)
@@ -19,7 +19,7 @@ def get_ip():
 
 @app.route('/multistep')
 def multistep():
-    return flask.render_template('multistepform.html')
+    return render_template('multistepform.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=os.getenv("PORT", default=5000))
