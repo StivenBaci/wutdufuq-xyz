@@ -75,6 +75,13 @@
     </div>
   </fieldset>
 </form>
+<div class="mandatory-hint">* Pflichtfeld</div>
+<div class="encryption-hint">
+		Um Ihre übermittelten Daten bestmöglich zu schützen, nutzen wir eine SSL-Verschlüsselung.
+</div>
+<div class="privacy-hint">
+		Bei der Verarbeitung von personenbezogenen Daten beachten wir die Vorschriften der EU-Datenschutz-Grundverordnung. Ausführliche Informationen finden Sie im <a href="/datenschutz" class="privacy-hint__link">Datenschutzbereich unserer Website</a>.
+</div>
 
 <style>
   /* Style the form */
@@ -249,6 +256,25 @@
   .step.finish {
     background-color: #04AA6D;
   }
+  
+  .encryption-hint {
+    margin-top: .75rem;
+    padding: .9375rem .9375rem 0 2.5rem;
+    position: relative;
+  }
+
+  .encryption-hint::before {
+    height: 1.25rem;
+    width: 1.0625rem;
+    background-image: url(/Icons/lock-grey.svg);
+    background-size: contain;
+    content: "";
+    display: block;
+    left: 0;
+    position: absolute;
+    top: 0.9375rem;
+}
+
 </style>
 
 
