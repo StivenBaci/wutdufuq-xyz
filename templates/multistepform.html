@@ -390,9 +390,6 @@ function submitForm() {
   const url = 'https://5zi6p73htunuaydxfs3jlgs74y0avmxs.lambda-url.eu-central-1.on.aws/'
   fetch(url, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
     body: JSON.stringify(maileonData),
   })
     .then(response => response.json())
