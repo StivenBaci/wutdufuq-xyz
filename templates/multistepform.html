@@ -60,9 +60,9 @@
 
     <div style="overflow:auto;">
       <div style="float:right;">
-        <button type="button button-secondary" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-        <button type="button button-secondary" id="nextBtn" onclick="nextPrev(1)">Next</button>
-        <button type="button button-primary" id="submitBtn" onclick="submitForm()">Submit</button>
+        <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+        <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+        <button type="button" id="submitBtn" onclick="submitForm()">Submit</button>
       </div>
     </div>
 
@@ -75,13 +75,6 @@
     </div>
   </fieldset>
 </form>
-<div class="mandatory-hint">* Pflichtfeld</div>
-<div class="encryption-hint">
-		Um Ihre übermittelten Daten bestmöglich zu schützen, nutzen wir eine SSL-Verschlüsselung.
-</div>
-<div class="privacy-hint">
-		Bei der Verarbeitung von personenbezogenen Daten beachten wir die Vorschriften der EU-Datenschutz-Grundverordnung. Ausführliche Informationen finden Sie im <a href="/datenschutz" class="privacy-hint__link">Datenschutzbereich unserer Website</a>.
-</div>
 
 <style>
   /* Style the form */
@@ -94,7 +87,7 @@
     margin-top: 0em;
   }
   
-  #regform a, .mandatory-hint a, .encryption-hint a {
+  #regform a {
     color: #e58998!important;
   }
   
@@ -146,19 +139,7 @@
       padding-right: 18px;
   }
 
-  .button-primary {
-    background-color: #e58998!important;
-    border-color: #e58998!important;
-    border-radius: 0!important;
-  }
-
-   .button-secondary {
-     background-color: #e58998!important;
-     border-color: #e58968!important;
-     border-radius: 0!important;
-   }
-
-/* Style the input fields */
+  /* Style the input fields */
 
   select {
     padding: 10px;
@@ -268,43 +249,6 @@
   .step.finish {
     background-color: #04AA6D;
   }
-  
-  .encryption-hint {
-    margin-top: .75rem;
-    padding: .9375rem .9375rem 0 2.5rem;
-    position: relative;
-  }
-
-  .encryption-hint::before {
-    height: 1.25rem;
-    width: 1.0625rem;
-    background-image: url(/Icons/lock-grey.svg);
-    background-size: contain;
-    content: "";
-    display: block;
-    left: 0;
-    position: absolute;
-    top: 0.9375rem;
-   }
-
-  .privacy-hint {
-    border-top: 1px solid #e8e8e8;
-    margin-top: 1.875rem;
-    padding: 1.25rem 0.9375rem 0.9375rem 2.5rem;
-    position: relative;
-   }
-
-  .encryption-hint::before {
-    height: 1.25rem;
-    width: 1.25rem;
-    background-image: url(/typo3conf/ext/ikkbb/Resources/Public/Icons/circle-info-grey.svg);
-    background-size: contain;
-    content: "";
-    display: block;
-    left: 0;
-    position: absolute;
-    top: 1.25rem;
-   }
 </style>
 
 
