@@ -60,9 +60,9 @@
 
     <div style="overflow:auto;">
       <div style="float:right;">
-        <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-        <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-        <button type="button" id="submitBtn" onclick="submitForm()">Submit</button>
+        <button type="button button-secondary" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+        <button type="button button-secondary" id="nextBtn" onclick="nextPrev(1)">Next</button>
+        <button type="button button-primary" id="submitBtn" onclick="submitForm()">Submit</button>
       </div>
     </div>
 
@@ -146,7 +146,19 @@
       padding-right: 18px;
   }
 
-  /* Style the input fields */
+  .button-primary {
+    background-color: #e58998!important;
+    border-color: #e58998!important;
+    border-radius: 0!important;
+  }
+
+   .button-secondary {
+     background-color: #e58998!important;
+     border-color: #e58968!important;
+     border-radius: 0!important;
+   }
+
+/* Style the input fields */
 
   select {
     padding: 10px;
