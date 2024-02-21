@@ -1,54 +1,60 @@
-.title-word {
-  animation: color-animation 4s linear infinite;
-}
-
-.title-word-1 {
-  --color-1: #DF8453;
-  --color-2: #3D8DAE;
-  --color-3: #E4A9A8;
-}
-
-.title-word-2 {
-  --color-1: #DBAD4A;
-  --color-2: #ACCFCB;
-  --color-3: #17494D;
-}
-
-.title-word-3 {
-  --color-1: #ACCFCB;
-  --color-2: #E4A9A8;
-  --color-3: #ACCFCB;
-}
-
-.title-word-4 {
-  --color-1: #3D8DAE;
-  --color-2: #DF8453;
-  --color-3: #E4A9A8;
-}
-
-@keyframes color-animation {
-  0%    {color: var(--color-1)}
-  32%   {color: var(--color-1)}
-  33%   {color: var(--color-2)}
-  65%   {color: var(--color-2)}
-  66%   {color: var(--color-3)}
-  99%   {color: var(--color-3)}
-  100%  {color: var(--color-1)}
-}
-
-/* Here are just some visual styles. 🖌 */
-
-.container {
-  display: grid;
-  place-items: center;  
+.wrapper {
+  width: 100vw;
   text-align: center;
-  height: 100vh
-}
+  span {
+    -webkit-text-stroke-width: 1.25px;
+    -webkit-text-stroke-color: #000;
+    font-size: 100px;
+    text-shadow: 0 0px #f3c623, 0 0px #f2aaaa;
+    transform: translate(0, 100%) rotate(4deg);
+    animation: jump 2s ease-in-out infinite;
+    display: inline-block;
+    font-family: "Sigmar", sans-serif;
+    color: #fff;
 
-.title {
-  font-family: "Sigmar", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 120px;
-  text-transform: uppercase;
+    @for $i from 1 through 12 {
+      &:nth-child(#{$i}) {
+        animation-delay: 120ms * $i;
+      }
+    }
+  }
+}
+@keyframes jump {
+  33% {
+    text-shadow: 0 60px #f37121, 0 150px #f2aaaa;
+  }
+  50% {
+    transform: translate(0, 0) rotate(-4deg);
+    text-shadow: 0 0px #8fc0a9, 0 0px #84a9ac;
+  }
+  66.67% {
+    text-shadow: 0 -60px #d54062, 0 -150px #8fc0a9;
+  }
+}
+html {
+  width: 100%;
+  height: 100vh;
+}
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #000;
+}
+@media screen and (max-height: 200px) {
+  .wrapper {
+    transform: scale(0.3,0.3);
+  }
+}
+@media screen and (max-width: 576px) {
+  .wrapper {
+    span {
+      font-size: 50px;
+    }
+  }
 }
