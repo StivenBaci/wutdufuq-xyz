@@ -2,7 +2,10 @@ from flask import request
 from flask import Flask, jsonify, render_template
 import os
 
-app = Flask(__name__)
+app = Flask(__name__,
+            static_url_path='', 
+            static_folder='templates/assets'
+)
 
 
 @app.route('/')
