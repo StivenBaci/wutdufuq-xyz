@@ -72,9 +72,9 @@
 
     <div style="overflow:auto;">
       <div style="float:right;">
-        <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+        <button type="button" id="prevBtn" onclick="nextPrev(-1)">Zurück</button>
         <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-        <button type="button" id="submitBtn" onclick="submitForm()">Submit</button>
+        <button type="button" id="submitBtn" onclick="submitForm()">Anmelden</button>
       </div>
     </div>
 
@@ -202,6 +202,7 @@
   
     .container-row {
       display: flex;
+      text-align: left;
       margin-bottom: 10px;
     }
   
@@ -237,9 +238,7 @@
   
   <script>
   var currentTab = 0; // Current tab is the first tab (0)
-  showTab(currentTab); // Display current tab
-  document.getElementById("no").checked = true;
-      
+  showTab(currentTab); // Display current tab    
   
   function showTab(n) {
     // This function will display the specified tab of the form
@@ -254,7 +253,7 @@
     if (n == (x.length - 1)) {
       document.getElementById("nextBtn").remove();
     } else {
-      document.getElementById("nextBtn").innerHTML = "Next";
+      document.getElementById("nextBtn").innerHTML = "Nächste Schritt";
     }
     fixStepIndicator(n)
   }
@@ -264,6 +263,7 @@
     var x = document.getElementsByClassName("tab");
     // Exit the function if any field in the current tab is invalid:
     if (n == 1 && !validateForm()) return false;
+    if (n == 1 && validateForm()) submitForm();
     // Hide the current tab:
     x[currentTab].style.display = "none";
     // Increase or decrease the current tab by 1:
