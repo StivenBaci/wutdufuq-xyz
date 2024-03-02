@@ -24,5 +24,10 @@ def get_ip():
 def multistep():
     return render_template('multistepform.html')
 
+
+@app.route('/hoai')
+def multistep():
+    return render_template('hoai-newsletter.html')
+
 if __name__ == '__main__':
     app.run(debug=True, port=os.getenv("PORT", default=5000))
