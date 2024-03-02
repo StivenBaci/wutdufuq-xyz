@@ -22,7 +22,9 @@
       </p>
       <p><input placeholder="Vorname" oninput="this.className = ''" ></p>
       <p><input placeholder="Nachname" oninput="this.className = ''"></p>
+      <p class="helper-before">Geben Sie Ihre E-Mail-Adresse ein, um sich anzumelden<span class="required_span">*</span></p>
       <p><input type="email" placeholder="E-Mail-Adresse" oninput="this.className = ''" required></p>
+      <p class="helper-after">Geben Sie bitte Ihre E-Mail-Adresse für die Anmeldung an, z. B. abc@xyz.com.</p>
       <div class="container-row" data-required="true">
         <label>
           <input placeholder='datenschutz' type="checkbox" id="datenschutz" value=true required>
@@ -196,16 +198,32 @@
       align-items: flex-start;
       font-size: 18px;
     }
-  
 
-  
-  
+    .helper-before {
+      font-size: 16px;
+      text-align: left;
+      font-weight: 700;
+      font-family: "Helvetica", sans-serif;
+      color: #3c4858;
+    }
+
+    .helper-after {
+      font-size: 12px;
+      text-align: left;
+      font-family: "Helvetica", sans-serif;
+      color: #8390A4;
+      text-align: left;
+    }
+    
     .container-row {
       display: flex;
       text-align: left;
       margin-bottom: 10px;
     }
-  
+
+    .required_span {
+      color: #ff4949;
+    }
   
     /* Hide all steps by default: */
     .tab {
