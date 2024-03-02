@@ -26,7 +26,7 @@ def multistep():
 
 
 @app.route('/hoai')
-def multistep():
+def hoai():
     return render_template('hoai-newsletter.html')
 
 if __name__ == '__main__':
