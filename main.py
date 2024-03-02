@@ -1,5 +1,5 @@
 from flask import request
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, send_from_directory
 import os
 
 app = Flask(__name__,
@@ -16,9 +16,9 @@ def index():
 @app.route("/get_ip", methods=["GET"])
 def get_ip():
     if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
-        return "<p> " + request.environ['REMOTE_ADDR'] + " </p>"
+        return request.environ['REMOTE_ADDR']
     else:
-        return "<p> " + request.environ['HTTP_X_FORWARDED_FOR'] + " </p>"
+        return request.environ['HTTP_X_FORWARDED_FOR']
 
 @app.route('/multistep')
 def multistep():
@@ -27,7 +27,7 @@ def multistep():
 
 @app.route('/hoai')
 def hoai():
-    return render_template('hoai-newsletter.html')
+    return send_from_directory('hoai-newsletter.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=os.getenv("PORT", default=5000))

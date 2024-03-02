@@ -2,7 +2,7 @@
   <div class="form-container">
   <div class="form-container-vertical">  
     <h1>Newsletter</h1>
-    <h4>Melden Sie sich zu unserem HOAI.de Newsletter an, um auf dem Laufenden zu bleiben.</h4>
+    <p>Melden Sie sich zu unserem HOAI.de Newsletter an, um auf dem Laufenden zu bleiben.</p>
     <!-- One "tab" for each step in the form: -->
     <div class="tab">
       <p>
@@ -121,36 +121,24 @@
       padding: 32px 12px 32px;
     }
 
-
-    .button:hover, .button:active {
-        background-color: #e58998;
-        color: #ffffff;
-    }
   
-    .button, .button:visited {
-        -o-transition: 0.5s;
-        -ms-transition: 0.5s;
-        -moz-transition: 0.5s;
-        -webkit-transition: 0.5s;
-        transition: 0.5s;
-        display: inline-block;
-        cursor: pointer;
-        background-color: #575757;
-        color: #ffffff;
-        font-size: 0.625rem;
-        font-weight: 600;
-        text-decoration: none;
-        text-align: center;
-        text-transform: uppercase;
-        line-height: 45px;
-        letter-spacing: 0.5px;
-        height: 45px;
-        min-width: 225px;
-        margin: 0 auto;
-        margin-bottom: 10px;
-        margin-right: 10px;
-        padding-left: 18px;
-        padding-right: 18px;
+    button  {
+      font-size: 16px;
+      text-align: left;
+      font-weight: 700;
+      font-family: "Helvetica", sans-serif;
+      color: #FFFFFF;
+      background-color: #3E4857;
+      border-radius: 3px;
+      border-width: 0px;
+      min-height: 40px;
+      line-height: 23px;
+      display: inline-block;
+      padding: 8px 18px;
+      border: none;
+      overflow-wrap: break-word;
+      max-width: 100%;
+      cursor: pointer;
     }
   
     /* Style the input fields */
@@ -163,10 +151,6 @@
       border: 1px solid #aaaaaa;
     }
   
-    select.invalid {
-      background-color: #EBCCD1;
-  
-    }
   
     input {
       padding: 10px;
@@ -176,11 +160,6 @@
       border: 1px solid #aaaaaa;
     }
   
-    /* Mark input boxes that gets an error on validation: */
-    input.invalid {
-      background-color: #EBCCD1;
-      color: #A94442;
-    }
   
     input[type=submit] {
         background-color: #FFC0CB;
@@ -207,6 +186,10 @@
       width: 1em;
       position: relative;
     }
+
+    #regForm input:not(textarea) {
+      height: calc(2.5rem - 2px);
+    }
   
     label {
       display: inline-flex;
@@ -214,10 +197,7 @@
       font-size: 18px;
     }
   
-    label p {
-      margin-top: 0;
-  
-    }
+
   
   
     .container-row {
