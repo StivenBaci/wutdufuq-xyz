@@ -15,9 +15,9 @@
       <p>
         <select placeholder="Anrede" name="anrede" oninput="this.className = ''">
           <option selected hidden value="">Anrede</option>
-          <option value="männlich">Herr</option>
-          <option value="weiblich">Frau</option>
-          <option value="divers">Divers</option>
+          <option value="m">Herr</option>
+          <option value="f">Frau</option>
+          <option value="">Divers</option>
         </select>
       </p>
       <p><input placeholder="Vorname" oninput="this.className = ''" ></p>
@@ -90,6 +90,8 @@
   <style>
     /* Style the form */
     #regForm {
+      display: flex;
+      justify-content: center;
       text-align: center;
       background-color: #EFF2F7;
       background-attachment: fixed;
