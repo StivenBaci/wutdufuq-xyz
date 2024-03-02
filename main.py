@@ -1,5 +1,5 @@
 from flask import request
-from flask import Flask, jsonify, render_template, send_from_directory
+from flask import Flask, jsonify, render_template
 import os
 
 app = Flask(__name__,
@@ -27,7 +27,7 @@ def multistep():
 
 @app.route('/hoai')
 def hoai():
-    return send_from_directory('hoai-newsletter.html')
+    return render_template('hoai-newsletter.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=os.getenv("PORT", default=5000))
