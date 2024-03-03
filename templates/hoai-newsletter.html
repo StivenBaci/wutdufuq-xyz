@@ -371,13 +371,19 @@
     maileonData = {
       "custom_fields": {
                         "Datenschutz": formData['datenschutz'],
+                        "Art der Beschäftigung": ['Art der Bechäftigung'],
+                        "Rolle": formData['Rolle'],
+                        "Bereich": formData['Bereich'],
+                        "Funktion": formData['Funktion'],
+                        "datasource": 'Reg-03'
                         },
       "standard_fields": {
                           "userEmail": formData["E-Mail-Adresse*"],
-                          "FIRSTNAME": formData["Vorname*"],
-                          "LASTNAME": formData["Nachname*"],
-                          "PLZ": formData['Postleitzahl*'],
-                          "ANREDE": formData["Geschlecht*"]
+                          "FIRSTNAME": formData["Vorname"],
+                          "LASTNAME": formData["Nachname"],
+                          "PLZ": formData['Postleitzahl'],
+                          "ANREDE": formData["Anrede"],
+                          "Titel": formData["Titel"]
                         } 
     };
     console.log(maileonData);
