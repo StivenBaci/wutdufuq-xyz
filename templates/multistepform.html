@@ -47,8 +47,10 @@
 
     <div class="tab">
       <p><input placeholder="Straße, Hausnummer*" oninput="this.className = ''" required></p>
-      <p><input placeholder="Postleitzahl*" oninput="this.className = ''" required></p>
-      <p><input placeholder="Ort*" oninput="this.className = ''" required></p>
+      <div class="">
+        <input placeholder="Postleitzahl*" oninput="this.className = ''" required>
+        <input placeholder="Ort*" oninput="this.className = ''" required>
+      </div>
       <p>
         <label for="Errechneter Geburtstermin" title>Errechneter Geburtstermin</label>
         <input placeholder="Errechneter Geburtstermin" name="Errechneter Geburtstermin" oninput="this.className = ''" type="date">
@@ -161,7 +163,7 @@
     padding: 10px;
     width: 100%;
     font-size: 17px;
-    font-family: Raleway;
+    font-family: "Proxima Nova", sans-serif, Helvetica, Arial;
     border: 1px solid #aaaaaa;
   }
 
@@ -173,7 +175,7 @@
     padding: 10px;
     width: 100%;
     font-size: 17px;
-    font-family: Raleway;
+    font-family: "Proxima Nova", sans-serif, Helvetica, Arial;
     border: 1px solid #aaaaaa;
   }
 
