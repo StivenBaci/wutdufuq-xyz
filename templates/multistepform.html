@@ -14,7 +14,7 @@
       <p><input placeholder="Nachname*" oninput="this.className = ''" required></p>
       <p><input type="email" placeholder="E-Mail-Adresse*" oninput="this.className = ''" required></p>
       <p>
-        <label for="versichert?" >Sind Sie bereits bei der IKKBB versichert?*
+        <label for="versichert?" >Sind Sie bereits bei der IKK BB versichert?*
         <input type="radio" name="versichert?" id="yes" placeholder="versichert?" value='Ja' required oninput="this.className = ''">Ja
         <input type="radio" name="versichert?" id="no" placeholder="versichert?" value='Nein' required oninput="this.className = ''">Nein
       </p>
@@ -337,6 +337,12 @@ function validateForm() {
       y[i].className += " invalid";
       valid = false;
     }
+  }
+
+  if (!document.getElementById("yes").checked && !document.getElementById("no").checked ) {
+    document.getElementById("yes").reportValidity();
+    document.getElementById("no").reportValidity();
+    return false; // Prevents form submission
   }
 
   if (!document.getElementById("datenschutz").checked ) {
