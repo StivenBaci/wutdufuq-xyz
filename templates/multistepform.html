@@ -1,7 +1,5 @@
 <form id="regForm" action="">
   <fieldset class="form-container-vertical">
-    <legend>Ihre Angaben zur Bestellung des Schwangerschaftstagebuchs</legend>
-
     <!-- One "tab" for each step in the form: -->
     <div class="tab">
       <p>
@@ -32,7 +30,7 @@
         <input type="checkbox" id="newsletter" placeholder="newsletter" value="">
           <label for="newsletter">
             <p>
-              Ich möchte den kostenlosen Newsletter der IKK BB abonnieren, mit dem ich regelmäßig über aktuelle Gesundheitshemen und besondere Angebote informiert werde. Ich bin damit einverstanden, dass meine E-Mail-Nutzung und Interaktion zum Zweck der Verbesserung des Kundenservices (sog. Einzelnutzertracking) erfasst, gespeichert und ausgewertet wird. Meine personenbezogenen Daten werden nur für den Zweck des E-Mail-Versands an unseren E-Mail-Dienstleister weitergegeben. Die Datenschutzerklärung habe ich gelesen. Ich kann meine Einwilligung zum Einzelnutzertracking sowie zum Newsletterversand widerrufen. Jeder Newsletter enthält einen Abmeldelink. Alle Angaben sind freiwillig und können jederzeit widerrufen werden, schriftlich, telefonisch oder per E-Mail an <a href="mailto:marketing@ikkbb.de">marketing@ikkbb.de</a>.
+              Ich möchte den kostenlosen Newsletter der IKK BB abonnieren, mit dem ich regelmäßig über aktuelle Gesundheitshemen und besondere Angebote informiert werde. Ich bin damit einverstanden, dass meine E-Mail-Nutzung und Interaktion zum Zweck der Verbesserung des Kundenservices (sog. Einzelnutzertracking) erfasst, gespeichert und ausgewertet wird. Meine personenbezogenen Daten werden nur für den Zweck des E-Mail-Versands an unseren E-Mail-Dienstleister weitergegeben. Ich kann meine Einwilligung zum Einzelnutzertracking sowie zum Newsletterversand widerrufen. Jeder Newsletter enthält einen Abmeldelink. Alle Angaben sind freiwillig und können jederzeit widerrufen werden, schriftlich, telefonisch oder per E-Mail an <a href="mailto:marketing@ikkbb.de">marketing@ikkbb.de</a>.
             </p>
             </label>
         </div>
@@ -47,8 +45,7 @@
       </p>
     </div>
 
-    <div class="tab">Contact Info:
-      <p><input placeholder="Telefonnummer" oninput="this.className = ''"></p>
+    <div class="tab">
       <p><input placeholder="Straße, Hausnummer*" oninput="this.className = ''" required></p>
       <p><input placeholder="Postleitzahl*" oninput="this.className = ''" required></p>
       <p><input placeholder="Ort*" oninput="this.className = ''" required></p>
@@ -56,6 +53,7 @@
         <label for="Errechneter Geburtstermin" title>Errechneter Geburtstermin</label>
         <input placeholder="Errechneter Geburtstermin" name="Errechneter Geburtstermin" oninput="this.className = ''" type="date">
       </p>
+      <p><input placeholder="Telefonnummer" oninput="this.className = ''"></p>
     </div>
 
     <div style="overflow:auto;">
@@ -65,7 +63,7 @@
     </div>
 
     <!-- Circles which indicates the steps of the form: -->
-    <div style="text-align:center;margin-top:40px;">
+    <div style="text-align:center;margin-top:40px;display:none;">
       <span class="step"></span>
       <span class="step"></span>
     </div>
@@ -86,7 +84,6 @@
   #regform a {
     color: #e58998!important;
   }
-
 
   .form-container-vertical h2 {
     color: #006eb7;
@@ -273,7 +270,6 @@
 
 
 <script>
-document.getElementById("no").checked = true;
 var currentTab = 0; // Current tab is the first tab (0)
 var submitCount = 0;
 showTab(currentTab); // Display current tab    
@@ -285,7 +281,7 @@ function displaySuccessMessage() {
   <h2>Fast geschafft: Bitte bestätigen Sie Ihre E-Mail-Adresse</h2>
     <p>
     </br></br>
-    nur noch ein Schritt zu Ihrem Schwangerschaftstagebuch: Wir haben Ihnen eine E-Mail geschickt – bitte klicken Sie dort auf den Bestätigungslink und freuen sich auf Post von uns.
+    Nur noch ein Schritt zu Ihrem Schwangerschaftstagebuch: Wir haben Ihnen eine E-Mail geschickt – bitte klicken Sie dort auf den Bestätigungslink und freuen sich auf Post von uns.
     </br></br>
     Sollten Sie keine E-Mail erhalten, schauen Sie bitte in Ihrem Spam-Ordner nach. Möglichweise kann es auch eine Verzögerung der E-Mail-Zustellung geben.
     </p>`;
@@ -297,15 +293,16 @@ function showTab(n) {
   x[n].style.display = "block";
   // fix the Previous/Next buttons:
   if (n == 0) {
-    document.getElementById("prevBtn").style.display = "none";
+    document.getElementById("submitBtn").innerHTML = "WEITER";
   } else {
+    document.getElementById("submitBtn").innerHTML = "ABBONIEREN";
     document.getElementById("prevBtn").style.display = "inline";
   }
-  if (n == (x.length - 1)) {
-    document.getElementById("nextBtn").remove();
-  } else {
-    document.getElementById("nextBtn").innerHTML = "Next";
-  }
+  // if (n == (x.length - 1)) {
+  //   document.getElementById("nextBtn").remove();
+  // } else {
+  //   document.getElementById("nextBtn").innerHTML = "Next";
+  // }
   fixStepIndicator(n)
 }
 
