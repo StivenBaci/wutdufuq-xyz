@@ -47,9 +47,9 @@
 
     <div class="tab">
       <p><input placeholder="Straße, Hausnummer*" oninput="this.className = ''" required></p>
-      <div class="">
-        <input placeholder="Postleitzahl*" oninput="this.className = ''" required>
-        <input placeholder="Ort*" oninput="this.className = ''" required>
+      <div class="plz-ort-row">
+        <input class="PLZ" style="width:35%" placeholder="Postleitzahl*" oninput="this.className = ''" required>
+        <input class="ORT" style="width:55%" placeholder="Ort*" oninput="this.className = ''" required>
       </div>
       <p>
         <label for="Errechneter Geburtstermin" title>Errechneter Geburtstermin</label>
@@ -60,7 +60,7 @@
 
     <div style="overflow:auto;">
       <div style="float:right;">
-        <button type="button" id="submitBtn" onclick="nextPrev(1)">Abbonieren</button>
+        <button type="button" id="submitBtn" onclick="nextPrev(1)">BESTELLEN</button>
       </div>
     </div>
 
@@ -199,6 +199,10 @@
       cursor: pointer;
   }
 
+  .plz-ort-row {
+    display: flex;
+  }
+
   label {
     display: inline-flex;
     align-items: center;
@@ -297,7 +301,7 @@ function showTab(n) {
   if (n == 0) {
     document.getElementById("submitBtn").innerHTML = "WEITER";
   } else {
-    document.getElementById("submitBtn").innerHTML = "ABBONIEREN";
+    document.getElementById("submitBtn").innerHTML = "BESTELLEN";
     document.getElementById("prevBtn").style.display = "inline";
   }
   // if (n == (x.length - 1)) {
