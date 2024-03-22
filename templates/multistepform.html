@@ -48,8 +48,8 @@
     <div class="tab">
       <p><input placeholder="Straße, Hausnummer*" oninput="this.className = ''" required></p>
       <div class="plz-ort-row">
-        <input class="PLZ" style="width:35%" placeholder="Postleitzahl*" oninput="this.className = ''" required>
-        <input class="ORT" style="width:55%" placeholder="Ort*" oninput="this.className = ''" required>
+        <input class="PLZ" style="width:38%" placeholder="Postleitzahl*" oninput="this.className = ''" required>
+        <input class="ORT" style="width:58%" placeholder="Ort*" oninput="this.className = ''" required>
       </div>
       <p>
         <label for="Errechneter Geburtstermin" title>Errechneter Geburtstermin</label>
@@ -201,6 +201,7 @@
 
   .plz-ort-row {
     display: flex;
+    justify-content: space-between;
   }
 
   label {
