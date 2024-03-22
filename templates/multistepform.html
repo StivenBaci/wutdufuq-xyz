@@ -1,5 +1,5 @@
 <form id="regForm" action="">
-  <fieldset>
+  <fieldset class="form-container-vertical">
     <legend>Ihre Angaben zur Bestellung des Schwangerschaftstagebuchs</legend>
 
     <!-- One "tab" for each step in the form: -->
@@ -60,9 +60,7 @@
 
     <div style="overflow:auto;">
       <div style="float:right;">
-        <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-        <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-        <button type="button" id="submitBtn" onclick="submitForm()">Submit</button>
+        <button type="button" id="submitBtn" onclick="nextPrev(1)">Abbonieren</button>
       </div>
     </div>
 
@@ -89,6 +87,25 @@
   
   #regform a {
     color: #e58998!important;
+  }
+
+
+  .form-container-vertical h2 {
+    color: #006eb7;
+    font-family: "Proxima Nova Extra Bold", sans-serif, Helvetica, Arial;
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: -.0275rem;
+    line-height: 1.25;
+    margin: 0 0 .3125rem 0;
+    padding: 0;
+    text-align: left;
+  }
+
+  .form-container-vertical p {
+    font-family: "Proxima Nova Regular", sans-serif, Helvetica, Arial;
+    color: #1d1d1b;
+    font-weight: 300;
   }
   
   fieldset legend {
@@ -151,7 +168,6 @@
 
   select.invalid {
     background-color: #EBCCD1;
-
   }
 
   input {
@@ -253,10 +269,24 @@
 
 
 <script>
-var currentTab = 0; // Current tab is the first tab (0)
-showTab(currentTab); // Display current tab
 document.getElementById("no").checked = true;
-    
+var currentTab = 0; // Current tab is the first tab (0)
+var submitCount = 0;
+showTab(currentTab); // Display current tab    
+
+
+
+function displaySuccessMessage() {
+  document.querySelector(".form-container-vertical").innerHTML = `
+    <h2>Fast geschafft: Bitte bestätigen Sie Ihre E-Mail-Adresse</h2>
+    <p>
+    Hallo ${form['Vorname*']} ${form['Nachname*']},
+    </br></br>
+    nur noch ein Schritt zu Ihrem Schwangerschaftstagebuch: Wir haben Ihnen eine E-Mail an ${form['E-Mail-Addresse*']} geschickt – bitte klicken Sie dort auf den Bestätigungslink und freuen sich auf Post von uns.
+    </br></br>
+    Sollten Sie keine E-Mail erhalten, schauen Sie bitte in Ihrem Spam-Ordner nach. Möglichweise kann es auch eine Verzögerung der E-Mail-Zustellung geben.
+    </p>`;
+}    
 
 function showTab(n) {
   // This function will display the specified tab of the form
@@ -277,23 +307,24 @@ function showTab(n) {
 }
 
 function nextPrev(n) {
-  // This function will figure out which tab to display
-  var x = document.getElementsByClassName("tab");
-  // Exit the function if any field in the current tab is invalid:
-  if (n == 1 && !validateForm()) return false;
-  // Hide the current tab:
-  x[currentTab].style.display = "none";
-  // Increase or decrease the current tab by 1:
-  currentTab = currentTab + n;
-  // if you have reached the end of the form... :
-  if (currentTab >= x.length) {
-    //...the form gets submitted:
-    document.getElementById("regForm").submit();
-    return false;
+    // This function will figure out which tab to display
+    var x = document.getElementsByClassName("tab");
+    // Exit the function if any field in the current tab is invalid:
+    if (n == 1 && !validateForm()) return false;
+    if (n == 1 && validateForm()) submitForm();
+    // Hide the current tab:
+    x[currentTab].style.display = "none";
+    // Increase the current tab by 1:
+    currentTab = currentTab + n;
+    // IF in case you have reached the end of the form... :
+    if (currentTab >= x.length) {
+      //...the form ends and it's replaced with success message
+      displaySuccessMessage();
+      return false; // stop function from showing the tab again
+    }
+    // Otherwise, display the correct tab:
+    showTab(currentTab);
   }
-  // Otherwise, display the correct tab:
-  showTab(currentTab);
-}
 
 function validateForm() {
   // This function deals with validation of the form fields
@@ -398,5 +429,12 @@ function submitForm() {
     .then(response => response.json())
     .then(data => console.log(data))
     .catch(error => console.error(error));
+}
+
+submitCount += 1;  
+
+if (submitCount >= 2) {
+  //form ends and it's replaced with success message
+  displaySuccessMessage();
 }
 </script>
