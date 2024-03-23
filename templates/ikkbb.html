@@ -14,6 +14,24 @@
           <label for="Nachname" title>Nachname</label>
           <input placeholder="Nachname" name="Nachname" oninput="this.className = ''">
         </p>
+        <p>
+          <label for="gender" title>Geschlecht</label>
+          <select placeholder="Geschlecht" name="gender" oninput="this.className = ''">
+            <option selected hidden value="">  </option>
+            <option value="männlich">männlich</option>
+            <option value="weiblich">weiblich</option>
+            <option value="sonstige">sonstige</option>
+            <option value="divers">divers</option>
+          </select>
+        </p>
+        <div class="container-row">
+          <input placeholder='datenschutz' type="checkbox" id="datenschutz" value=true required oninput="this.className = ''">
+          <label for="datenschutz">
+            <p>
+              Ja, Ich möchte den kostenlosen Newsletter der IKK BB abonnieren, mit dem ich regelmäßig über aktuelle Gesundheitshemen und besondere Angebote informiert werde. Ich bin damit einverstanden, dass meine E-Mail-Nutzung und Interaktion zum Zweck der Verbesserung des Kundenservices (sog. Einzelnutzertracking) erfasst, gespeichert und ausgewertet wird. Meine personenbezogenen Daten werden nur für den Zweck des E-Mail-Versands an unseren E-Mail-Dienstleister weitergegeben. Die Datenschutzerklärung habe ich aufmerksam gelesen. Ich kann meine Einwilligung zum Einzelnutzertracking sowie zum Newsletterversand widerrufen. Jeder Newsletter enthält einen Abmeldelink. Alle Angaben sind freiwillig und können jederzeit widerrufen werden, schriftlich, telefonisch oder per E-Mail an marketing@ikkbb.de.
+            </p>
+            </label>
+        </div>
       </div>
   
       <div class="tab">
@@ -314,13 +332,7 @@
         valid = false;
       }
     }
-  
-    if (!document.getElementById("yes").checked && !document.getElementById("no").checked ) {
-      document.getElementById("yes").reportValidity();
-      document.getElementById("no").reportValidity();
-      return false; // Prevents form submission
-    }
-  
+    
     if (!document.getElementById("datenschutz").checked ) {
       document.getElementById("datenschutz").reportValidity();
       return false; // Prevents form submission
@@ -382,10 +394,6 @@
   
     maileonData = {
       "custom_fields": {
-                        "Ikkbbmember": Array.from(document.querySelectorAll('[required]'))
-                                            .filter(radio => radio.checked)[0].value,
-                        "Interesse_vorhanden": (document.getElementById('informationen').checked ? 'true' : ''),
-                        "Newsletter_Anmeldung": (document.getElementById('newsletter').checked ? 'true' : ''),
                         "Telefonnummer": formData['Telefonnummer'],
                         "Datenschutz": formData['datenschutz'],
                         "Geburtstermin": formData['Errechneter Geburtstermin']
@@ -397,7 +405,7 @@
                           "Straße": formData['Straße, Hausnummer*'],
                           "Ort": formData['Ort*'],
                           "PLZ": formData['Postleitzahl*'],
-                          "Geschlecht": formData["Geschlecht*"]
+                          "Geschlecht": formData["Geschlecht"]
                         } 
     };
     console.log(maileonData);
