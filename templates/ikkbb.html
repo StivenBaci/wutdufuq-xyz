@@ -35,16 +35,34 @@
       </div>
   
       <div class="tab">
-        <p><input placeholder="Straße, Hausnummer*" oninput="this.className = ''" required></p>
-        <div class="plz-ort-row">
-          <input class="PLZ" style="width:38%" placeholder="Postleitzahl*" oninput="this.className = ''" required>
-          <input class="ORT" style="width:58%" placeholder="Ort*" oninput="this.className = ''" required>
-        </div>
         <p>
-          <label for="Errechneter Geburtstermin" title>Errechneter Geburtstermin</label>
-          <input placeholder="Errechneter Geburtstermin" name="Errechneter Geburtstermin" oninput="this.className = ''" type="date">
+          <label for="geschenk" title>Geschenk</label>
+          <select placeholder="Geschenk" name="geschenk" oninput="this.className = ''">
+            <option selected hidden value="">  </option>
+            <option value="Leckere, gesunde Rezepte">Leckere, gesunde Rezepte</option>
+            <option value="Kikkis spannendes Brettspiel">Kikkis spannendes Brettspiel</option>
+            <option value="Poster: Fit im Homeoffice">Poster: Fit im Homeoffice</option>
+          </select>
         </p>
-        <p><input placeholder="Telefonnummer" oninput="this.className = ''"></p>
+        <p>
+          <label for="wohnsituation" title>Mein Wohnsituation</label>
+          <select placeholder="Wohnsituation" name="wohnsituation" oninput="this.className = ''">
+            <option selected hidden value="">  </option>
+            <option value="Ich lebe allein">Ich lebe allein</option>
+            <option value="Partnerschaft mit Kinder">Partnerschaft mit Kinder</option>
+            <option value="Partnerschaft ohne Kinder">Partnerschaft ohne Kinder</option>
+            <option value="Wir leben zu Zweit">Wir leben zu Zweit</option>
+            <option value="Sonstige">Sonstige</option>
+          </select>
+        </p>
+        <p>
+          <label for="versichert" >Sind Sie bereits bei der IKK BB versichert?
+          <input type="radio" name="versichert" id="yes" placeholder="versichert" value='Ja' oninput="this.className = ''">Ja
+          <input type="radio" name="versichert" id="no" placeholder="versichert" value='Nein' oninput="this.className = ''">Nein
+        </p>
+        <p>
+          <input class="PLZ" placeholder="Postleitzahl" oninput="this.className = ''">
+        </p>
       </div>
   
       <div style="overflow:auto;">
@@ -399,7 +417,7 @@
                           "LASTNAME": formData["Nachname*"],
                           "Straße": formData['Straße, Hausnummer*'],
                           "Ort": formData['Ort*'],
-                          "PLZ": formData['Postleitzahl*'],
+                          "PLZ": formData['Postleitzahl'],
                           "Geschlecht": formData["Geschlecht"]
                         } 
     };
