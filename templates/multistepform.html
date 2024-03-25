@@ -12,7 +12,10 @@
       </p>
       <p><input placeholder="Vorname*" oninput="this.className = ''" required></p>
       <p><input placeholder="Nachname*" oninput="this.className = ''" required></p>
-      <p><input type="email" placeholder="E-Mail-Adresse*" oninput="this.className = ''" required></p>
+      <p>
+        <input placeholder="E-Mail-Adresse*" type="email" id="email" oninput="this.className = ''" required>
+        <span class="error">Ungültige E-Mail Adresse</span>
+      </p>
       <p>
         <label for="versichert?" >Sind Sie bereits bei der IKK BB versichert?*
         <input type="radio" name="versichert?" id="yes" placeholder="versichert?" value='Ja' required oninput="this.className = ''">Ja
@@ -266,6 +269,10 @@
     background-color: #04AA6D;
   }
 
+  span.error {
+    display:none;
+  }
+
   /* Hide all steps by default: */
   .tab {
     display: none;
@@ -300,7 +307,7 @@ var currentTab = 0; // Current tab is the first tab (0)
 var submitCount = 0;
 showTab(currentTab); // Display current tab    
 
-
+var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 function displaySuccessMessage() {
   document.querySelector(".form-container-vertical").innerHTML = `
@@ -352,6 +359,17 @@ function nextPrev(n) {
     showTab(currentTab);
   }
 
+
+function validateEmail(email) {
+  if (emailRegex.test(email)) {
+    return true;
+  } else {
+    document.getElementById('email').value = '';
+    document.getElementById('email').className = 'invalid';
+    return false; // Prevents form submission
+  }
+}
+
 function validateForm() {
   // This function deals with validation of the form fields
   var x, y, i, valid = true;
@@ -376,6 +394,11 @@ function validateForm() {
     return false; // Prevents form submission
   }
 
+  if (!validateEmail(document.getElementById('email').value)) {
+    document.getElementById('email').value = '';
+    document.getElementById('email').className = 'invalid';
+    return false; // Prevents form submission
+  }
   // If the valid status is true, mark the step as finished and valid:
   if (valid) {
     document.getElementsByClassName("step")[currentTab].className += " finish";
@@ -425,7 +448,7 @@ function submitForm() {
   
   
   // API Request to Lambda Function
-  console.log("Submitting form data:", formData); 
+  // console.log("Submitting form data:", formData); 
   // Convert the formData object to JSON and format for Maileon
 
   userEmail = formData["E-Mail-Adresse*"]
@@ -450,7 +473,7 @@ function submitForm() {
                         "Geschlecht": formData["Geschlecht*"]
                       } 
   };
-  console.log(maileonData);
+  // console.log(maileonData);
   //(TO-DO: Ideally send the data straight to Maileon, requires a safe environment for the api key.)
 
   const url = 'https://5zi6p73htunuaydxfs3jlgs74y0avmxs.lambda-url.eu-central-1.on.aws/'
