@@ -4,7 +4,7 @@
       <div class="tab">
         <p>
             <label for="E-Mail-Adresse" title>E-Mail-Adresse</label>
-            <input placeholder="E-Mail-Adresse" name="E-Mail-Adresse" oninput="this.className = ''" type="email" required>
+            <input placeholder="E-Mail-Adresse" name="E-Mail-Adresse" id="email" oninput="this.className = ''" type="email" required>
         </p>
         <p>
           <label for="Vorname" title>Vorname</label>
@@ -83,11 +83,20 @@
             <input type="checkbox" placeholder="Interesse_Land" id="Interesse_Land">Stadt & Land</option>
         </p>
       </div>
-  
       <div style="overflow:auto;">
           <button type="button" id="submitBtn" onclick="nextPrev(1)">BESTELLEN</button>
       </div>
-  
+      <div class="container-row">
+        <span class="tip">* Pflichtfeld</span>
+      </div>
+      <div class="container-row">
+        <img src="https://www.ikkbb.de/typo3conf/ext/ikkbb/Resources/Public/Icons/lock-grey.svg" alt="">
+        <span class="tip">Um Ihre übermittelten Daten bestmöglich zu schützen, nutzen wir eine SSL-Verschlüsselung.</span>
+      </div>
+      <div class="container-row">
+        <img src="https://www.ikkbb.de/typo3conf/ext/ikkbb/Resources/Public/Icons/circle-info-grey.svg" alt="">
+        <span class="tip">Bei der Verarbeitung von personenbezogenen Daten beachten wir die Vorschriften der EU-Datenschutz-Grundverordnung. Ausführliche Informationen finden Sie im <a href="https://www.ikkbb.de/datenschutz" class="privacy-hint__link">Datenschutzbereich unserer Website</a>.</span>
+      </div>
       <!-- Circles which indicates the steps of the form: -->
       <div style="text-align:center;margin-top:40px;display:none;">
         <span class="step"></span>
@@ -245,8 +254,21 @@
     }
     
     .container-row {
-        display: flex;
-    }
+      display: flex;
+      width: 100%;
+  }
+
+  .container-row span.tip {
+    font-family: "Proxima Nova Regular", sans-serif, Helvetica, Arial;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.25;
+    color: #1d1d1b;
+    border-top: 1px solid #e8e8e8;
+    padding: 1rem .9375rem .9375rem 2.5rem;
+    position: relative;
+    width: 100%;
+  }
 
     input[type="checkbox"] {
       height: 15px;
