@@ -58,10 +58,20 @@
       <p><input placeholder="Telefonnummer" oninput="this.className = ''"></p>
     </div>
 
-    <div style="overflow:auto;">
-      <div style="float:right;">
+    <div>
         <button type="button" id="submitBtn" onclick="nextPrev(1)">BESTELLEN</button>
-      </div>
+    </div>
+
+    <div class="container-row">
+      <span class="tip">* Pflichtfeld</span>
+    </div>
+    <div class="container-row">
+      <img src="https://www.ikkbb.de/typo3conf/ext/ikkbb/Resources/Public/Icons/lock-grey.svg" alt="">
+      <span class="tip">Um Ihre übermittelten Daten bestmöglich zu schützen, nutzen wir eine SSL-Verschlüsselung.</span>
+    </div>
+    <div class="container-row">
+      <img src="https://www.ikkbb.de/typo3conf/ext/ikkbb/Resources/Public/Icons/circle-info-grey.svg" alt="">
+      <span class="tip">Bei der Verarbeitung von personenbezogenen Daten beachten wir die Vorschriften der EU-Datenschutz-Grundverordnung. Ausführliche Informationen finden Sie im <a href="https://www.ikkbb.de/datenschutz" class="privacy-hint__link">Datenschutzbereich unserer Website</a>.</span>
     </div>
 
     <!-- Circles which indicates the steps of the form: -->
@@ -76,7 +86,7 @@
   /* Style the form */
   #regForm {
     background-color: #ffffff;
-    /* margin: 100px auto; */
+    margin: 100px auto;
     padding: 40px;
     width: 640px;
     min-width: 300px;
@@ -131,15 +141,11 @@
       cursor: pointer;
       background-color: #e58998;
       color: #ffffff;
-      font-size: 0.625rem;
-      font-weight: 600;
       height: 45px;
       min-width: 225px;
       margin: 0 auto;
       margin-bottom: 10px;
       margin-right: 10px;
-      padding-left: 18px;
-      padding-right: 18px;
       align-items: center;
       display: inline-flex;
       justify-content: center;
@@ -226,12 +232,25 @@
     margin-bottom: 10px;
   }
 
-  .container-row {
-      display: flex;
-  }
-
   .checkbox-container input {
     margin-right: 10px;
+  }
+
+  .container-row {
+      display: flex;
+      width: 100%;
+  }
+
+  .container-row span.tip {
+    font-family: "Proxima Nova Regular", sans-serif, Helvetica, Arial;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.25;
+    color: #1d1d1b;
+    border-top: 1px solid #e8e8e8;
+    padding: 1rem .9375rem .9375rem 2.5rem;
+    position: relative;
+    width: 100%;
   }
 
   input[type="checkbox"] {
