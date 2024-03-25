@@ -46,7 +46,7 @@
         </p>
         <p>
           <label for="wohnsituation" title>Mein Wohnsituation</label>
-          <select placeholder="Wohnsituation" name="wohnsituation" oninput="this.className = ''">
+          <select placeholder="Wohnsituation" name="wohnsituation">
             <option selected hidden value="">  </option>
             <option value="Ich lebe allein">Ich lebe allein</option>
             <option value="Partnerschaft mit Kinder">Partnerschaft mit Kinder</option>
@@ -63,12 +63,29 @@
         <p>
           <input class="PLZ" placeholder="Postleitzahl" oninput="this.className = ''">
         </p>
+        <p style="display:flex;flex-direction: column;"">
+          Ich interessiere mich für:
+          <div>
+            <input type="checkbox" placeholder="Interesse_Sport" id="Interesse_Sport">Sport & Bewegung</option>
+          </div>
+          <div>  
+            <input type="checkbox" placeholder="Interesse_Ernaehrung" id="Interesse_Ernaehrung">Essen & Trinken</option>
+          </div>
+          <div>  
+            <input type="checkbox" placeholder="Interesse_Psyche" id="Interesse_Psyche">Mentale Gesundheit</option>
+          </div>
+          <div>  
+            <input type="checkbox" placeholder="Interesse_Koerper" id="Interesse_Koerper">Körperliche Gesundheit</option>
+          </div>
+          <div>  
+            <input type="checkbox" placeholder="Interesse_Familie" id="Interesse_Familie">Familie & Kinder</option>
+          </div>
+            <input type="checkbox" placeholder="Interesse_Land" id="Interesse_Land">Stadt & Land</option>
+        </p>
       </div>
   
       <div style="overflow:auto;">
-        <div style="float:right;">
           <button type="button" id="submitBtn" onclick="nextPrev(1)">BESTELLEN</button>
-        </div>
       </div>
   
       <!-- Circles which indicates the steps of the form: -->
@@ -226,21 +243,11 @@
       margin-right: 10px;
       width: 20px;
     }
-  
-    .checkbox-container {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 10px;
-    }
-  
+    
     .container-row {
         display: flex;
     }
-  
-    .checkbox-container input {
-      margin-right: 10px;
-    }
-  
+
     input[type="checkbox"] {
       height: 15px;
       width: 15px;
@@ -350,6 +357,13 @@
       document.getElementById("datenschutz").reportValidity();
       return false; // Prevents form submission
     }
+
+    if (currentTab == 1 && !document.getElementById("yes").checked && !document.getElementById("no").checked ) {
+      document.getElementById("yes").reportValidity();
+      document.getElementById("no").reportValidity();
+      console.log("Gotcha");
+      return false; // Prevents form submission
+    }
   
     // If the valid status is true, mark the step as finished and valid:
     if (valid) {
@@ -380,8 +394,6 @@
       // Iterate through each input and create a key-value pair in formData
       for (let j = 0; j < inputs.length; j++) {
         const inputName = inputs[j].getAttribute("placeholder");
-  
-  
         // Ensure `inputName` is valid before using it
         if (!inputName) {
           continue; // Skip inputs without placeholders
@@ -395,10 +407,8 @@
       console.log('Validation failed.');
       return false; // Prevents form submission
     }
-  
     // formData and input values are validated
-    
-    
+
     // API Request to Lambda Function
     console.log("Submitting form data:", formData); 
     // Convert the formData object to JSON and format for Maileon
@@ -407,24 +417,32 @@
   
     maileonData = {
       "custom_fields": {
-                        "Telefonnummer": formData['Telefonnummer'],
-                        "Datenschutz": formData['datenschutz'],
-                        "Geburtstermin": formData['Errechneter Geburtstermin']
-                        },
+        "Datenschutz": formData['datenschutz'],
+        "versichert":  Array.from(document.querySelectorAll('[required]'))
+                    .filter(radio => radio.checked)[0].value
+                      },
       "standard_fields": {
-                          "userEmail": formData["E-Mail-Adresse*"],
-                          "FIRSTNAME": formData["Vorname*"],
-                          "LASTNAME": formData["Nachname*"],
-                          "Straße": formData['Straße, Hausnummer*'],
-                          "Ort": formData['Ort*'],
-                          "PLZ": formData['Postleitzahl'],
-                          "Geschlecht": formData["Geschlecht"]
-                        } 
+        "userEmail":   formData["E-Mail-Adresse*"],
+        "FIRSTNAME":   formData["Vorname"],
+        "LASTNAME":    formData["Nachname"],
+        "PLZ":         formData['Postleitzahl'],
+        "Geschlecht":  formData["Geschlecht"]
+                        }
+    };
+
+    if (currentTab==1) {
+      maileonData["custom_fields"] = {
+          "Interesse_Sport":      (document.getElementById('Interesse_Sport').checked ? 'true' : ''),
+          "Interesse_Ernaehrung": (document.getElementById('Interesse_Ernaehrung').checked ? 'true' : ''),
+          "Interesse_Psyche":     (document.getElementById('Interesse_Psyche').checked ? 'true' : ''),
+          "Interesse_Koerper":    (document.getElementById('Interesse_Koerper').checked ? 'true' : ''),
+          "Interesse_Familie":    (document.getElementById('Interesse_Familie').checked ? 'true' : ''),
+          "Interesse_Land":       (document.getElementById('Interesse_Land').checked ? 'true' : '')
+        }
     };
     console.log(maileonData);
     //(TO-DO: Ideally send the data straight to Maileon, requires a safe environment for the api key.)
-  
-    const url = 'https://5zi6p73htunuaydxfs3jlgs74y0avmxs.lambda-url.eu-central-1.on.aws/'
+    const url = ''
     fetch(url, {
       method: 'POST',
       body: JSON.stringify(maileonData),
