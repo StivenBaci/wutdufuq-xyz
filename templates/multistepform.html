@@ -301,7 +301,6 @@
   }
 </style>
 
-
 <script>
 var currentTab = 0; // Current tab is the first tab (0)
 var submitCount = 0;
@@ -313,8 +312,9 @@ function displaySuccessMessage() {
   document.querySelector(".form-container-vertical").innerHTML = `
   <h2>Fast geschafft: Bitte bestätigen Sie Ihre E-Mail-Adresse</h2>
     <p>
+    Hallo ${userName}
     </br></br>
-    Nur noch ein Schritt zu Ihrem Schwangerschaftstagebuch: Wir haben Ihnen eine E-Mail geschickt – bitte klicken Sie dort auf den Bestätigungslink und freuen sich auf Post von uns.
+    Nur noch ein Schritt zu Ihrem Schwangerschaftstagebuch: Wir haben Ihnen eine E-Mail an ${userEmail} geschickt – bitte klicken Sie dort auf den Bestätigungslink und freuen sich auf Post von uns.
     </br></br>
     Sollten Sie keine E-Mail erhalten, schauen Sie bitte in Ihrem Spam-Ordner nach. Möglichweise kann es auch eine Verzögerung der E-Mail-Zustellung geben.
     </p>`;
@@ -331,11 +331,6 @@ function showTab(n) {
     document.getElementById("submitBtn").innerHTML = "BESTELLEN";
     document.getElementById("prevBtn").style.display = "inline";
   }
-  // if (n == (x.length - 1)) {
-  //   document.getElementById("nextBtn").remove();
-  // } else {
-  //   document.getElementById("nextBtn").innerHTML = "Next";
-  // }
   fixStepIndicator(n)
 }
 
@@ -429,7 +424,6 @@ function submitForm() {
     for (let j = 0; j < inputs.length; j++) {
       const inputName = inputs[j].getAttribute("placeholder");
 
-
       // Ensure `inputName` is valid before using it
       if (!inputName) {
         continue; // Skip inputs without placeholders
@@ -443,15 +437,14 @@ function submitForm() {
     console.log('Validation failed.');
     return false; // Prevents form submission
   }
-
   // formData and input values are validated
-  
   
   // API Request to Lambda Function
   // console.log("Submitting form data:", formData); 
   // Convert the formData object to JSON and format for Maileon
 
   userEmail = formData["E-Mail-Adresse*"]
+  userName = formData['Vorname*']
 
   maileonData = {
     "custom_fields": {
@@ -473,7 +466,7 @@ function submitForm() {
                         "Geschlecht": formData["Geschlecht*"]
                       } 
   };
-  // console.log(maileonData);
+  console.log(maileonData);
   //(TO-DO: Ideally send the data straight to Maileon, requires a safe environment for the api key.)
 
   const url = 'https://5zi6p73htunuaydxfs3jlgs74y0avmxs.lambda-url.eu-central-1.on.aws/'
