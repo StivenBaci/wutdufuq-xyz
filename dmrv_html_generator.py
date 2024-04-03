@@ -40,7 +40,7 @@ columns = ['BondID', 'Entity', 'Amount Issued', 'Currency', 'Issue Date', 'Matur
 # Create DataFrame
 df = pd.DataFrame(data, columns=columns)
 
-df.set_table_styles([
+df = df.style.set_table_styles([
     {'selector': 'table', 
         'props': 'font-family: arial, sans-serif; border-collapse: collapse; width: 100%;'},
     {'selector': 'td, th', 

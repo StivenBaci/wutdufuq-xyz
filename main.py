@@ -5,7 +5,7 @@ from dmrv_html_generator import getHTMLTable
 
 
 app = Flask(__name__,
-            static_url_path='/main.css', 
+            static_url_path='', 
             static_folder='templates/assets'
 )
 
