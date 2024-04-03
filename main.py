@@ -1,6 +1,8 @@
 from flask import request
 from flask import Flask, jsonify, render_template
 import os
+from dmrv-html-generator import getHTMLTable
+
 
 app = Flask(__name__,
             static_url_path='', 
@@ -12,6 +14,9 @@ app = Flask(__name__,
 def index():
     return render_template('index.html')
 
+@app.route('/gango44')
+def gango44():
+    return getHTMLTable()
 
 @app.route("/get_ip", methods=["GET"])
 def get_ip():
