@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+from ydata_profiling import ProfileReport
 
 # URL of the webpage to scrape
 url = 'https://www.climatebonds.net/cbi/pub/data/bonds'
@@ -40,14 +41,17 @@ columns = ['BondID', 'Entity', 'Amount Issued', 'Currency', 'Issue Date', 'Matur
 # Create DataFrame
 df = pd.DataFrame(data, columns=columns)
 
-df = df.style.set_table_styles([
-    {'selector': 'table', 
-        'props': 'font-family: arial, sans-serif; border-collapse: collapse; width: 100%;'},
-    {'selector': 'td, th', 
-        'props': 'border: 1px solid #dddddd; text-align: left; padding: 8px;'},
-    {'selector': 'tr:nth-child(even)', 
-        'props': 'background-color: #dddddd;'}
-], overwrite=False)
 
 def getHTMLTable():
+    df.style.set_table_styles([
+            {'selector': 'table', 
+                'props': 'font-family: arial, sans-serif; border-collapse: collapse; width: 100%;'},
+            {'selector': 'td, th', 
+                'props': 'text-align: left; padding: 8px;'},
+            {'selector': 'tr:nth-child(even)', 
+                'props': 'background-color: #dddddd;'}
+        ], overwrite=False)
     return df.to_html()# Converts the dataframe to HTML table format
+
+def getProfileReport():
+    return ProfileReport(df).to_html()# Generates profile
