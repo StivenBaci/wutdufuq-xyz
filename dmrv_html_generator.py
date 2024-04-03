@@ -19,6 +19,7 @@ currencies = soup.find_all(class_='views-field-field-bond-currency')
 issue_dates = soup.find_all(class_='views-field-field-bond-issue-date')
 maturity_dates = soup.find_all(class_='views-field-field-bond-maturity-date')
 cbi_certified = soup.find_all(class_='views-field-field-bond-verifier')
+spo_providers = soup.find_all(class_='views-field views-field-field-bond-spo-provider')
 
 # Extract text from the found elements
 bond_ids_text = [element.get_text().strip() for element in bond_ids]
@@ -28,12 +29,25 @@ currencies_text = [element.get_text().strip() for element in currencies]
 issue_dates_text = [element.get_text().strip() for element in issue_dates]
 maturity_dates_text = [element.get_text().strip() for element in maturity_dates]
 cbi_certified_text = [element.get_text().strip() for element in cbi_certified]
+spo_providers_text = [element.get_text().strip() for element in spo_providers]
 
-# Print the collected data (for demonstration)
-data = zip(bond_ids_text, entities_text, amounts_issued_text, currencies_text, issue_dates_text, maturity_dates_text, cbi_certified_text)
+# Since the first row of data should be the column labels, prepare data accordingly
+data = zip(bond_ids_text[1:], entities_text[1:], amounts_issued_text[1:], currencies_text[1:], issue_dates_text[1:], maturity_dates_text[1:], cbi_certified_text[1:], spo_providers_text[1:])
 
+# Define column labels based on the first row (now removed from data)
+columns = ['BondID', 'Entity', 'Amount Issued', 'Currency', 'Issue Date', 'Maturity Date', 'CBI Certified', 'SPO Provider']
 
-df = pd.DataFrame(data)
+# Create DataFrame
+df = pd.DataFrame(data, columns=columns)
+
+df.set_table_styles([
+    {'selector': 'table', 
+        'props': 'font-family: arial, sans-serif; border-collapse: collapse; width: 100%;'},
+    {'selector': 'td, th', 
+        'props': 'border: 1px solid #dddddd; text-align: left; padding: 8px;'},
+    {'selector': 'tr:nth-child(even)', 
+        'props': 'background-color: #dddddd;'}
+], overwrite=False)
 
 def getHTMLTable():
-    return df.to_html()  # print the dataframe
+    return df.to_html()# Converts the dataframe to HTML table format

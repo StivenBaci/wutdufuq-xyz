@@ -1,11 +1,11 @@
 from flask import request
 from flask import Flask, jsonify, render_template
 import os
-from dmrv-html-generator import getHTMLTable
+from dmrv_html_generator import getHTMLTable
 
 
 app = Flask(__name__,
-            static_url_path='', 
+            static_url_path='/main.css', 
             static_folder='templates/assets'
 )
 
