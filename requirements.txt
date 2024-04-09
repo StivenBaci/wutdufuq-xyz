@@ -7,3 +7,4 @@ MarkupSafe==1.1.1
 Werkzeug==1.0.1
 beautifulsoup4==4.12.3
 requests==2.31.0
+ydata_profiling==4.7.0
