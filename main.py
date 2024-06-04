@@ -38,10 +38,10 @@ def log_ip():
     data = f"IP: {ip}, Timestamp: {timestamp}"
     
     # Generate a unique URL path
-    nfty_url = "https://nfty.sh/a8gd9jd7jdg5_hfd6hdf8h2gs9_8ghs5"
+    nfty_url = "https://nfty.sh/wutdufuqxyzlog"
     
     # Send the data to the unique nfty.sh URL
-    response = requests.post(nfty_url, data=data)
+    response = requests.post(nfty_url, data=data.encode('utf-8'))
     
     if response.status_code == 200:
         return ip
